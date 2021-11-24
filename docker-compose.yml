@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  app:
+    build: ./app
+    command: npm run start
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    environment:
+      - PORT=8080
+      - HOST=http:/nvk-web.local
+    networks:
+      - nvk-web-network
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nvk-web-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf.prod:/etc/nginx/conf.d/nginx.conf
+    depends_on:
+      - app
+    networks:
+      - nvk-web-network
+
+networks:
+  nvk-web-network:
+    driver: bridge
+
