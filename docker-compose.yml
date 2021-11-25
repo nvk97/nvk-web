@@ -9,7 +9,7 @@ services:
     restart: unless-stopped
     environment:
       - PORT=8080
-      - HOST=http:/nvk-web.local
+      - HOST=http://nvk-web.local
     networks:
       - nvk-web-network
   nginx:

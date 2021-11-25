@@ -5,6 +5,9 @@ services:
     command: npm run dev
     volumes: 
       - ./app:/usr/src/app
+    environment:
+      - PORT=8080
+      - HOST=http://nvk-web.local
     stdin_open: true
     tty: true
   nginx:
